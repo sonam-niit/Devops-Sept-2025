@@ -71,3 +71,10 @@
 
 - try to solve manually like what you want to keep 
 - again save, stage, commit and push.
+
+**Above Entire Process You can try with VS Code as Well**
+- when conflict occur you can see the current change, Incoing change
+- accept both or compare
+- make the changes and from vs code only click on Version control 
+- click on + icon for stage and commit button to commit
+- it will resolve merge conflict.
