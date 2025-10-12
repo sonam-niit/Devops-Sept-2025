@@ -38,3 +38,36 @@
 - if there is not confliction it will merge quickly and then check log
 - after using the branch if no need then delete them
 - git branch -d feature/login (it will delete branch)
+
+**Merge Conflict**
+
+- create bugfix branch and switch to it: git switch -c bugfix
+- edit login.html file and make some changes
+```html
+<h2>Login Form<h2>
+<form>
+</form>
+```
+- stage it: git add .
+- commit : git commit -m "changes done from bugfix branch"
+
+- switch back to main: git switch main
+
+- again edit login file: nano login.html
+```html
+<h2>Welcome to Form<h2>
+<h3>Please Fill up below form to Login</h3>
+<form></form>
+```
+- stage it: git add .
+- commit : git commit -m "changes done from main branch"
+
+- now merge: git merge bugfix
+![Merge Conflict](images/conflict.png)
+
+- to resolve: open file in nano editor
+- you can see both the changes coming from Head (main branch)
+- and changes from Bugfix branch
+
+- try to solve manually like what you want to keep 
+- again save, stage, commit and push.
