@@ -1,0 +1,50 @@
+# Byte-compiled / optimized Python files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment folders
+venv/
+myenv/
+.venv/
+ENV/
+
+# IDE / Editor files
+.vscode/
+.idea/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+*.egg
+
+# Logs and debug files
+*.log
+
+# Python caches
+*.pyo
+*.pyd
+
+# Test and coverage outputs
+.coverage
+htmlcov/
+.cache/
+pytest_cache/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Environment variables
+*.env
+.env.*
+
+# Local settings
+settings_local.py
+
+# macOS files
+.DS_Store
+
+# Windows files
+Thumbs.db
