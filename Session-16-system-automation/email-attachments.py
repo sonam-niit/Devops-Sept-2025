@@ -8,7 +8,7 @@ from email import encoders
 
 def send_email(subject,body):
     sender_email="your email id"
-    receiver_email="sonam_skills@pw.live"
+    receiver_email="receivers_email_id"
     password=os.environ.get("EMAIL_PASSWORD") # fetch from env variable
     
     # Export variable from Linux: export EMAIL_PASSWORD="your_password"
