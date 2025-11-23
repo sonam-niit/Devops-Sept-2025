@@ -37,6 +37,10 @@ test(' add negative numbers ',()=>{
 
 - also create .gitignore file to ignore node_modules folder from git push
 
+```.gitignore
+node_modules
+```
+
 - to check is locally you can run command
 - npm test (check test cases passed or not)
 
