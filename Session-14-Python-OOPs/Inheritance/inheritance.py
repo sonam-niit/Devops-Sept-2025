@@ -6,6 +6,7 @@ class Person:
         print("-------------------------------------------------")
         print(f"Name: {self.name}")
         print(f"Age: {self.age}")
+        
 # Student is Child of Person Class
 # Parent name always comes after child name
 class Student(Person):

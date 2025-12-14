@@ -2,7 +2,7 @@ import re
 
 text="Hello World"
 #check from start
-pattern=r"Hello" # regex pattern to check
+pattern=r"Hello"
 match = re.match(pattern,text)
 if match:
     print("Text started with Hello")
