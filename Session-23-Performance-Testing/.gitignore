@@ -1,0 +1,61 @@
+# -------------------------
+# Python virtual environment
+# -------------------------
+venv/
+.env/
+.env*/
+.venv/
+
+# -------------------------
+# Python cache / bytecode
+# -------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+
+# -------------------------
+# Testing & coverage
+# -------------------------
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+nosetests.xml
+test-results.xml
+
+# -------------------------
+# Locust
+# -------------------------
+locust.log
+locust_stats.csv
+locust_stats_history.csv
+locust_exceptions.csv
+
+# -------------------------
+# Build / distribution
+# -------------------------
+build/
+dist/
+*.egg-info/
+
+# -------------------------
+# IDE & OS
+# -------------------------
+.vscode/
+.idea/
+*.iml
+.DS_Store
+Thumbs.db
+
+# -------------------------
+# Logs
+# -------------------------
+*.log
+
+# -------------------------
+# Environment & secrets
+# -------------------------
+.env
+*.env
+secrets.yml
