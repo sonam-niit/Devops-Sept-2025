@@ -48,12 +48,14 @@ class MyStressTestUser(HttpUser):
 ```
 
 ```bash
-locust -f locustfile.py
+locust -f locustfile.py # incase 8089 is busy use below command
+locust -f locustfile.py --web-port 9090
 ```
 - access in browser
 
 ![Locust Setup](images/locust-1.png)
 
+- add users 1000 to see the response in better way
 - click on start
 - check statistics
 
