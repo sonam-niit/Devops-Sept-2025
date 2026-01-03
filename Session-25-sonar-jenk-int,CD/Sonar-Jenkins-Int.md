@@ -45,6 +45,16 @@ sudo systemctl start jenkins
 - in Generate Auth token
 - click on Add -> click on Jenkins
 
-![alt text](images/secret-text.png)
+![Secret Text](images/secret-text.png)
+
+- Generate Token from Sonar Dashboard
+- Account -> My Account -> Security Tab -> Generate User Token
+
+![Token generate](images/generate-token.png)
+
+- Add that token in Jenkins
+![token in Jenkins](images/add-token-jenkins.png)
+
+- Click on Add Button and then Click on Save
 
 
