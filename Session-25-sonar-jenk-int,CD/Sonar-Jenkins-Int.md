@@ -66,6 +66,9 @@ sudo systemctl start jenkins
 pipeline {
     agent any
 
+    tools {
+        sonarScanner 'MySonarScanner'
+    }
     environment {
         SONARQUBE_ENV = 'MySonar'
     }
@@ -101,17 +104,31 @@ pipeline {
                 withSonarQubeEnv("${SONARQUBE_ENV}") {
                     sh '''
                         . venv/bin/activate
-                        /mnt/c/sonar-scanner-linux/bin/sonar-scanner \
-                        -Dsonar.token=add_your_sonar_token
+                        sonar-scanner
                     '''
                 }
             }
         }
+        
+        stage('Quality Gate') {
+            steps {
+                timeout(time:5, unit: 'MINUTES') {
+                    waitForQualityGate abortPipeline: true
+                }
+            }
+        }
+
     }
 
     post {
         always {
             archiveArtifacts artifacts: 'coverage.xml', allowEmptyArchive: true
+        }
+        failure {
+            echo 'Build Failed due to Quality Gate or test Failure'
+        }
+        success {
+            echo 'Code Quality Check Passed'
         }
     }
 }
@@ -128,4 +145,18 @@ pipeline {
 ![Result on Sonar Dashboard](images/result-sonar-dash.png)
 
 
+- Incase If you want to use Jenkins Sonar-Scanner
+- then install Plugin for Jenkins Scanner
+- ManageJenkins -> Tools -> Sonarqube Scanner Installation -> Add New
+- Give Some Name, check on install automatically and Save
+
+- Usually jenkins detect scanner sutomatically but incase if its not detecting 
+- then use
+
+```groovy
+tools {
+    sonarScanner 'MySonarScanner'
+}
+
+```
 
