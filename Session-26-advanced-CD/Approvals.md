@@ -44,7 +44,7 @@ pipeline {
 ![Email Notification](images/email-notification.png)
 
 - click on Advanced
-![Set Values](images/configuration.png.png)
+![Set Values](images/configuration.png)
 
 - Generate App Password for your Email by accessing myaccount.gmail.com
 - Search For App Password and create
