@@ -1,0 +1,10 @@
+all:
+  hosts:
+    server1:
+      ansible_host: ec2-54-175-0-50.compute-1.amazonaws.com
+      ansible_user: ubuntu
+      ansible_ssh_private_key_file: ~/.ssh/ansiblekey.pem
+    
+
+# Verify inventory is OK or not
+# ansible-inventory -i inventory.yml --list

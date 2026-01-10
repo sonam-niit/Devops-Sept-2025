@@ -1,0 +1,22 @@
+---
+- name: Sample Playbook run on Localhost
+  hosts: localhost
+  connection: local
+
+  tasks:
+  - name: Say Hello
+    debug:
+      msg: "This is first Hello From Ansible"
+
+  - name: Another Hello
+    debug:
+      msg: "Sample Another Message"
+
+  - name: Create Sample File
+    copy:
+      dest: /mnt/d/rohit/
+      # dest: /home/sonam/developers/demo.txt
+      content: "This file as created by Ansible"
+
+#  Command to run Playbook
+# ansible-playbook first-playbook.yml -i localhost, --connection=local

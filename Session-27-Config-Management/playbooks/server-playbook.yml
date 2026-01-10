@@ -1,0 +1,28 @@
+---
+- name: deploy my app
+  hosts: server1
+  become: true
+
+  tasks:
+  - name: Update API Packages
+    apt:
+      update_cache: yes
+
+  - name: Install Nginx
+    apt:
+      name: nginx
+      state: present
+
+  - name: Copy HTML file to default location
+    copy:
+      src: index.html
+      dest: /var/www/html/index.html
+
+  - name: Start Nginx
+    service:
+      name: nginx
+      state: started
+      enabled: yes
+
+#  Command to run Playbook
+# ansible-playbook server-playbook.yml -i inventory.yml
