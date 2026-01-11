@@ -1,0 +1,35 @@
+---
+- name: Deploy Node App
+  hosts: server1
+  become: true
+
+  tasks:
+  - name: Update API Packages
+    apt:
+      update_cache: yes
+
+  - name: Install Req Packages
+    apt:
+      name: 
+        - nodejs 
+        - npm
+        - git
+      # state: present/absent/latest
+
+  - name: Clone Repository
+    git:
+      repo: "https://github.com/sonam-niit/nodedockerapp.git"
+      dest: /opt/my-node-app
+
+  - name: Install Dependencies
+    npm:
+      path: /opt/my-node-app
+      production: yes
+  - name: Start App
+    shell: "nohup node /opt/my-node-app/index.js &"
+
+  # run playbook
+  # ansible-playbook -i inventory.yml node-app.yml
+  # check output in public_ip:3000, public_ip:3000/news
+  # make sure in security group port 3000 is opened.
+    

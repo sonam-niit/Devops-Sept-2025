@@ -1,0 +1,7 @@
+all:
+  hosts:
+    server1:
+      ansible_host: <public_ip_or_dns>
+      ansible_user: ubuntu
+      ansible_ssh_private_key_file: ~/.ssh/ansiblekey.pem
+    

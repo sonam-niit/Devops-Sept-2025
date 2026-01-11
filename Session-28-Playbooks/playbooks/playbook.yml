@@ -1,0 +1,31 @@
+---
+- name: install packages
+  hosts: server1
+  become: true
+
+  tasks:
+  - name: Update API Packages
+    apt:
+      update_cache: yes
+
+  - name: Install Git and Curl
+    apt:
+      name: 
+        - git 
+        - curl
+      # state: present/absent/latest
+
+  - name: Git Version
+    command: git --version
+    register: git_version
+
+  - name: Curl Version
+    command: curl --version
+    register: curl_version
+
+  - name: Show Git & Curl Version
+    debug:
+      msg: 
+       - "Git Version {{git_version.stdout}}"
+       - "Curl Version {{curl_version.stdout}}"
+    
