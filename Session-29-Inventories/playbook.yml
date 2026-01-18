@@ -1,0 +1,30 @@
+---
+- name: deploy my app
+  hosts: aws_ec2
+  become: true
+
+  tasks:
+  - name: Update API Packages
+    apt:
+      update_cache: yes
+
+  - name: Install Nginx
+    apt:
+      name: nginx
+      state: present
+
+  - name: Copy HTML file to default location
+    copy:
+      src: index.html
+      dest: /var/www/html/index.html
+
+  - name: Start Nginx
+    service:
+      name: nginx
+      state: started
+      enabled: yes
+
+#  Command to run Playbook
+#  ansible-playbook playbook.yml -i aws_ec2.yml -u ubuntu --private-key "~/.ssh/pwskills.pem"
+
+# here i passed username and key directly because compose is not detecting username and key

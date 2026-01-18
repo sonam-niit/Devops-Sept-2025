@@ -63,3 +63,27 @@ aws configure
 aws configure list
 aws sts get-caller-identity # You get Account Details
 ```
+
+## Create Dynamic Inventory
+
+[Reference Link Documentation](https://docs.ansible.com/projects/ansible/latest/collections/amazon/aws/docsite/aws_ec2_guide.html)
+
+- create aws_ec2.yml as shown here
+- this is our dynamic inventory created.
+
+```bash
+ansible-inventory -i aws_ec2.yml --graph
+ansible-inventory -i aws_ec2.yml --list # generate inventory List
+
+# incase if you are getting warning while generating inventory means few dependency missing
+
+# install boto3 and botocore
+
+sudo apt install python3-boto3 -y
+sudo apt install python3-botocore -y
+
+python3 -m pip show boto3 # show boto3 version
+
+# after verify check again
+ansible-inventory -i aws_ec2.yml --graph
+```

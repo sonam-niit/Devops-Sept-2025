@@ -1,0 +1,25 @@
+plugin: amazon.aws.aws_ec2
+regions:
+- us-east-1
+
+filters:
+  # tag:Environment: dev
+  instance-state-name : running
+
+keyed_groups:
+- prefix: "aws"
+  key: tags.Name
+
+
+compose:
+    # ansible_host: private_ip_address
+    ansible_host: public-ip-address
+    ansible_user: ubuntu
+    ansible_ssh_private_key_file: /home/skills/.ssh/pwskills.pem
+
+
+
+# just to verify inventory working use below adhoc command
+
+#  ansible -i aws_ec2.yml  all -m ping -u ubuntu --private-key  "~/.ssh/pwskills.pem"
+# ansible-playbook playbook.yml -i aws_ec2.yml -u ubuntu --private-key "~/.ssh/pwskills.pem"
