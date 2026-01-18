@@ -1,0 +1,7 @@
+all:
+  hosts:
+    server1:
+      ansible_host: ec2-98-81-84-2.compute-1.amazonaws.com
+      ansible_user: ubuntu
+      ansible_ssh_private_key_file: ~/.ssh/pwskills.pem
+    
