@@ -133,3 +133,21 @@ dependencies:
 - so now when you run playbook it will update default port to 8080 based on configuration
 - then notify restart handler which will run the handler code
 - server will restarted and now you can see the default page of nginx on public_ip:8080
+
+
+## Static Inclusion
+```yml
+roles:
+    - frontend
+    - backend
+```
+
+## Dynamic Inclusion of Roles in Ansible
+
+- Ansible will decide at runtime which role to run based on condition or variable
+
+```yml
+- include_role:
+    name: backend
+  when app_type == "backend"
+```

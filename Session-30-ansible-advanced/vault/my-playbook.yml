@@ -1,0 +1,13 @@
+- name: Valut Demo playbook
+  hosts: localhost
+  gather_facts: no
+
+  vars_files:
+    - secret.yml
+  tasks:
+    - name: Print DB username
+      debug:
+        msg: "DB UserName is {{ db_user }}"
+
+# ansible-playbook my-playbook.yml --ask-vault-pass
+# enter password and playbook able to access vault data
