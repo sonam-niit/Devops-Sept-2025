@@ -1,0 +1,17 @@
+---
+- name: Launch EC2 Instance
+  hosts: localhost
+  connection: local 
+  gather_facts: false
+
+  tasks:
+    - name: Terminate every running instance in a region. Use with EXTREME caution.
+      amazon.aws.ec2_instance:
+        state: absent
+        filters:
+          instance-state-name: running
+      register: ec2_result
+
+    - name: Output Instance Details
+      debug:
+        var: ec2_result

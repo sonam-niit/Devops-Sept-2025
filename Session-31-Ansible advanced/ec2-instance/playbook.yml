@@ -1,0 +1,25 @@
+---
+- name: Launch EC2 Instance
+  hosts: localhost
+  connection: local 
+  gather_facts: false
+
+  vars_files:
+    - group_vars/all.yml
+
+  tasks:
+    - name: start an instance with a public IP address
+      amazon.aws.ec2_instance:
+        name: "{{ tag_name }}"
+        key_name: "{{ key_name }}"
+        instance_type: "{{ instance_type }}"
+        security_group: "{{ security_group_name }}"
+        region: "{{ aws_region }}"
+        image_id: "{{ ami_id }}"
+        tags:
+          Environment: dev
+      register: ec2_result
+
+    - name: Output Instance Details
+      debug:
+        var: ec2_result
