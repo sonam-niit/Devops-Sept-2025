@@ -11,4 +11,4 @@ spec:
       protocol: TCP
       name: http
   selector:
-    {{ include "myapp.name" . }}
+    app: {{ include "myapp.name" . }}

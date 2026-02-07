@@ -3,16 +3,16 @@ kind: Deployment
 metadata:
   name: {{ include "myapp.fullname" . }}
   labels:
-        {{ include "myapp.name" .  }}
+       app: {{ include "myapp.name" .  }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{ include "myapp.name" .  }}
+      app: {{ include "myapp.name" .  }}
   template:
     metadata:
       labels:
-        {{ include "myapp.name" .  }}
+       app:  {{ include "myapp.name" .  }}
     spec:
       containers:
         - name: {{ .Chart.Name }}
