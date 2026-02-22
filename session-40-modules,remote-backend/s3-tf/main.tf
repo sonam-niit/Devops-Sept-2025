@@ -4,6 +4,7 @@ resource "aws_s3_bucket" "website_bucket" {
     Name: var.bucket_name
     Environment: var.environment
   }
+  force_destroy = true
 }
 
 resource "aws_s3_bucket_versioning" "versioning" {
