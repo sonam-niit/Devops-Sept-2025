@@ -19,6 +19,8 @@ terraform apply -var-file="tfvars/dev.tfvars" --auto-approve
 terraform workspace select prod # change Workspace
 terraform plan -var-file="tfvars/prod.tfvars"
 terraform apply -var-file="tfvars/prod.tfvars" --auto-approve
+
+terraform destroy -var-file="tfvars/prod.tfvars" --auto-approve # for both workspace
 ```
 
 - For Above Commands 2 seperate state files maintained for both environments

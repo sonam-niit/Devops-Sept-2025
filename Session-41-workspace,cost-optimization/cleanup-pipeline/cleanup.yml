@@ -1,0 +1,27 @@
+name: Terraform Cleanup
+
+on: 
+  schedule:
+    - cron: "0 17 * * *"
+
+jobs:
+  destroy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout-code
+        uses: actions/checkout@v6
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Terraform Init
+        run: terraform Init
+
+      - name: Terraform destroy
+        run: terraform destroy --auto-approve
+
+# set up remote backend first while creating resources
+
+# to run pipeline from Github
+# in Github we need to configure secrets
