@@ -72,3 +72,46 @@ terraform apply -auto-approve
 ```
 
 - you can see here I can access secrets directly
+
+## access vault with login then follow belo steps
+
+- start vault server in one wsl terminal: vault server -dev
+- open another terminal and make sure to export address:
+- export VAULT_ADDR='http://127.0.0.1:8200'
+- then run: vault login: enter token (its not visible just paste)
+
+```bash
+vault kv put secret/cred username="admin" pass="admin123"
+vault kv get -format=json secret/cred
+```
+
+- another way to access is Terraform
+
+- use main.tf
+```tf
+provider "vault" {
+  
+}
+data "vault_kv_secret" "db"{
+    path = "secret/cred"
+}
+```
+
+- create outputs.tf
+
+```tf
+output "database_password" {
+  value = data.vault_kv_secret.db.data["pass"]
+  sensitive = true
+}
+output "database_username" {
+  value = data.vault_kv_secret.db.data["username"]
+  sensitive = true
+}
+```
+
+```bash
+terraform init
+terraform apply -auto-approve
+# in output you can see
+```
