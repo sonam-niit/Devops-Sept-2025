@@ -13,3 +13,6 @@ variable "security_group_id" {
 variable "instance_name" {
   description = "Name of the Instance"
 }
+variable "key_name" {
+  description = "Key Name"
+}

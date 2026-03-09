@@ -52,3 +52,16 @@
 - click on show version option in bucket you can see versions of uploaded images
 
 ![Versions](images/versions.png)
+
+### Static Website Hosting using S3 Bucket
+
+- create some index.html, files and folder as static website
+- upload inside s3 bucket root location
+
+- s3 bucket --> properties --> scroll to last
+- static website hosting -> enable
+- file mention index.html
+- save
+- check url where website hosted
+
+*To access this also getObject policy is required, we have already added that erlier that's why its accessible here*

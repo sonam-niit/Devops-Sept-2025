@@ -20,4 +20,5 @@ module "ec2" {
   instance_name = "webserver1"
   instance_type = "t2.micro"
   ami = "ami-0b6c6ebed2801a5cb"
+  key_name = "pwskills" #pass key name
 }
