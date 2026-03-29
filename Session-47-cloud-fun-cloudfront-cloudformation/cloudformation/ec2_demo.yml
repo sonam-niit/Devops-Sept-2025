@@ -1,0 +1,73 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: CloudFormation Template for Webserver
+
+Parameters:
+  InstanceType:
+    Description: Web Server Instance Type
+    Type: String 
+    Default: t2.micro
+    AllowedValues:
+      - t3.micro
+      - t2.micro
+    ConstraintDescription: must be a valid instance Type
+Resources:
+  WebServerSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Allow HTTP  access via my IP address
+      GroupName: websg
+      SecurityGroupIngress: 
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+
+  MyEC2Instance:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      ImageId: ami-0c3389a4fa5bddaad
+      InstanceType: !Ref InstanceType
+      KeyName: pwskills
+      SecurityGroups:
+        - !Ref WebServerSecurityGroup
+      Tags:
+      - Key: Name
+        Value: WebServer
+      UserData: !Base64 |
+        #!/bin/bash
+        yum update -y 
+        yum install httpd -y 
+        systemctl start httpd
+        systemctl enable httpd
+        echo "<html><bidy><h1>Sonam Soni!</h1></body></html>" > /var/www/html/index.html
+      BlockDeviceMappings:
+        - DeviceName: /dev/sdm
+          Ebs:
+            VolumeType: io1
+            Iops: 200
+            DeleteOnTermination: false
+            VolumeSize: 20
+
+Outputs:
+  PublicIP:
+    Value: !GetAtt MyEC2Instance.PublicIp
+    Description: publicIp
+  WebsiteUrl:
+    Value: !GetAtt MyEC2Instance.PublicDnsName
+    Description: WebsiteUrl
+# aws cloudformation create-stack --stack-name demo-stack --template-body file://ec2_demo.yml
+# you can verify stack in aws console
+# also check Ec2 instance and volume
+
+# for update 
+#  aws cloudformation update-stack --stack-name demo-stack --template-body file://ec2_demo.yml
+
+# for delete
+#  aws cloudformation delete-stack --stack-name demo-stack
+
+# aws cloudformation create-stack --stack-name demo-stack --template-body file://ec2_demo.yml --parameters file://dev.json
+# like this we can seperate variables from actual code
